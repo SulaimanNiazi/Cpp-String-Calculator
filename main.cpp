@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include<stdlib.h>
 using namespace std;
 int main()
 {
@@ -10,30 +11,38 @@ int main()
     cin>>input;
     cout<<"You entered: "<<input<<endl;
     
-    int tokenNo = 0, length = strlen(input);
-    string tokens[16];
+    int length = strlen(input), tokenNo = 0, index = 0, firstOperations = 0, secondOperations = 0;
+    char tokens[16][16]={};
     bool symbol = false;
     for(int x = 0; x < length; x++){
         int ascValue = (int)input[x];
         if((ascValue >= 48 && ascValue <= 57) || input[x] == '.'){ //asc value of 0 is 48 and 9 is 57
             if(symbol){
-                if(tokens[tokenNo] != "+" && tokens[tokenNo] != "-" && tokens[tokenNo] != "*" && tokens[tokenNo] != "/" && tokens[tokenNo] != "+-"){
-                    cout<<"Invalid token: "<<tokens[tokenNo]<<endl;
+                if(strcmp(tokens[tokenNo],(char*)"*") == 0 || strcmp(tokens[tokenNo],(char*)"/") == 0){
+                    firstOperations++;
+                }
+                else if(strcmp(tokens[tokenNo],(char*)"+") == 0 || strcmp(tokens[tokenNo],(char*)"-") == 0 || strcmp(tokens[tokenNo],(char*)"+-") == 0 || strcmp(tokens[tokenNo],(char*)"--") == 0){
+                    secondOperations++;
+                }
+                else{
+                    cout<<"Syntax Error\nInvalid token: "<<tokens[tokenNo]<<endl;
                     return 0;
                 }
                 tokenNo++;
+                index = 0;
                 symbol = false;
             }
         }
-        else{
-            if(!symbol){
-                tokenNo++;
-                symbol = true;
-            }
+        else if(!symbol){
+            tokenNo++;
+            index = 0;
+            symbol = true;
         }
-        tokens[tokenNo] += input[x];
+        tokens[tokenNo][index++] = input[x];
     }
 
     cout<<"Tokens: "<<endl;
-    for(int x = 0; x < tokenNo + 1; cout<<tokens[x++]<<endl);
+    for(int x = 0; x < tokenNo + 1; x++){
+        cout<<tokens[x]<<endl;
+    };
 }
