@@ -43,14 +43,23 @@ int main()
 
     for(int y = 0; y < tokenNo + 1; y++){
         if(strcmp(tokens[y],(char*)"*") == 0 || strcmp(tokens[y],(char*)"/") == 0){
-            float first = atof(tokens[y - 1]);
-            float second = atof(tokens[y + 1]);
-            cout<<"First: "<<first<<"\noperation: "<<tokens[y]<<"\nSecond: "<<second<<endl;
+            float first = atof(tokens[y - 1]), second = atof(tokens[y + 1]), ans;
+            if(strcmp(tokens[y],(char*)"*") == 0){
+                ans = first * second;
+            }
+            else{
+                ans = first / second;
+            }
+            sprintf(tokens[y - 1], "%f", ans);
+            for(int z = y; z < tokenNo; z++){
+                strcpy(tokens[z], tokens[z + 2]);
+                strcpy(tokens[z + 2], (char*)"");
+            }
         }
     }
 
     cout<<"Tokens: "<<endl;
-    for(int x = 0; x < tokenNo + 1; x++){
+    for(int x = 0; x < tokenNo; x++){
         cout<<tokens[x]<<endl;
     };
 }
