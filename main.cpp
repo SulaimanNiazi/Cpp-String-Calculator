@@ -41,6 +41,14 @@ int main()
         tokens[tokenNo][index++] = input[x];
     }
 
+    for(int y = 0; y < tokenNo + 1; y++){
+        if(strcmp(tokens[y],(char*)"*") == 0 || strcmp(tokens[y],(char*)"/") == 0){
+            float first = atof(tokens[y - 1]);
+            float second = atof(tokens[y + 1]);
+            cout<<"First: "<<first<<"\noperation: "<<tokens[y]<<"\nSecond: "<<second<<endl;
+        }
+    }
+
     cout<<"Tokens: "<<endl;
     for(int x = 0; x < tokenNo + 1; x++){
         cout<<tokens[x]<<endl;
