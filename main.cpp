@@ -15,7 +15,7 @@ int main()
     bool symbol = false;
     for(int x = 0; x < length; x++){
         int ascValue = (int)input[x];
-        if((ascValue >= 48 && ascValue <= 57) || ascValue == 46){ //asc value of 0 is 48 and 9 is 57
+        if((ascValue >= 48 && ascValue <= 57) || input[x] == '.'){ //asc value of 0 is 48 and 9 is 57
             if(symbol){
                 tokenNo++;
                 symbol = false;
@@ -28,6 +28,10 @@ int main()
             }
         }
         tokens[tokenNo] += input[x];
+        if(symbol && (tokens[tokenNo] != "+" && tokens[tokenNo] != "-" && tokens[tokenNo] != "*" && tokens[tokenNo] != "/" && tokens[tokenNo] != "+-")){
+            cout<<"Invalid token: "<<tokens[tokenNo]<<endl;
+            return 0;
+        }
     }
 
     cout<<"Tokens: "<<endl;
