@@ -1,15 +1,15 @@
 #include<iostream>
 #include<string>
 #include<stdlib.h>
+
 using namespace std;
-int main()
-{
+
+int main(){
     system("cls");
     
     char input[256];
     cout<<"Enter equation: ";
     cin>>input;
-    cout<<"You entered: "<<input<<endl;
     
     int length = strlen(input), tokenNo = 2, index = 0;
     char tokens[256][256]={"0","+"}, solution[16] = {}, allowedOperators[] = {'+','-','*','/'};
@@ -52,7 +52,7 @@ int main()
 
     for(int y = 0; y < tokenNo + 1; y++){
         if(strcmp(tokens[y],(char*)"*") == 0 || strcmp(tokens[y],(char*)"/") == 0){
-            float first = atof(tokens[y - 1]), second = atof(tokens[y + 1]), ans;
+            double first = strtod(tokens[y - 1], NULL), second = strtod(tokens[y + 1], NULL), ans;
             if(strcmp(tokens[y],(char*)"*") == 0){
                 ans = first * second;
             }
@@ -64,12 +64,13 @@ int main()
                 strcpy(tokens[z], tokens[z + 2]);
                 strcpy(tokens[z + 2], (char*)"");
             }
+            tokenNo -= 2;
             y--;
         }
     }
     for(int y = 0; y < tokenNo + 1; y++){
         if(strcmp(tokens[y],(char*)"+") == 0 || strcmp(tokens[y],(char*)"-") == 0){
-            float first = atof(tokens[y - 1]), second = atof(tokens[y + 1]), ans;
+            double first = strtod(tokens[y - 1], NULL), second = strtod(tokens[y + 1], NULL), ans;
             if(strcmp(tokens[y],(char*)"+") == 0){
                 ans = first + second;
             }
@@ -81,6 +82,7 @@ int main()
                 strcpy(tokens[z], tokens[z + 2]);
                 strcpy(tokens[z + 2], (char*)"");
             }
+            tokenNo -= 2;
             y--;
         }
     }
