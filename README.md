@@ -41,6 +41,5 @@ Cpp String Calculator is a simple calculator program written in C++ that takes a
 
 ```
 Enter equation: 12.5+7.3*2-5/2.5
-You entered: 12.5+7.3*2-5/2.5
 Solution: 25.9
 ```
