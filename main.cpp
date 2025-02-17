@@ -6,13 +6,13 @@ int main()
 {
     system("cls");
     
-    char input[16];
+    char input[256];
     cout<<"Enter equation: ";
     cin>>input;
     cout<<"You entered: "<<input<<endl;
     
     int length = strlen(input), tokenNo = 2, index = 0;
-    char tokens[16][16]={"0","+"}, solution[16] = {}, allowedOperators[] = {'+','-','*','/'};
+    char tokens[256][256]={"0","+"}, solution[16] = {}, allowedOperators[] = {'+','-','*','/'};
     bool symbol = false;
     for(int x = 0; x < length; x++){
         int ascValue = (int)input[x];
