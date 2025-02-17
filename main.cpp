@@ -45,6 +45,10 @@ int main()
         }
         tokens[tokenNo][index++] = input[x];
     }
+    if(symbol){
+        cout<<"Syntax Error\nYou can't end an equation with an operator"<<endl;
+        return 0;
+    }
 
     for(int y = 0; y < tokenNo + 1; y++){
         if(strcmp(tokens[y],(char*)"*") == 0 || strcmp(tokens[y],(char*)"/") == 0){
