@@ -92,11 +92,10 @@ int main(){
         if(solution[x] == '0'){
             solution[x] = '\0';
         }
-        else if(solution[x] == '.'){
-            solution[x] = '\0';
-            break;
-        }
         else{
+            if(solution[x] == '.'){
+                solution[x] = '\0';
+            }
             break;
         }
     }
